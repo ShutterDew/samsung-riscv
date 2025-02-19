@@ -1,0 +1,86 @@
+#include "debug.h"
+
+#define LED_COUNT 5
+
+// Define LED GPIO pins (PC0 - PC4)
+#define LED1_PIN GPIO_Pin_0  // Brightest
+#define LED2_PIN GPIO_Pin_1  
+#define LED3_PIN GPIO_Pin_2  
+#define LED4_PIN GPIO_Pin_3  
+#define LED5_PIN GPIO_Pin_4  // Least bright
+
+#define LDR_PIN GPIO_Pin_4  // LDR sensor on PD4
+#define IR_SENSOR_PIN GPIO_Pin_5  // IR sensor on PD5
+
+uint16_t brightness_levels[] = {100, 60, 30, 15, 5}; // Simulated PWM duty cycle
+
+void GPIO_Config(void);
+void Control_LED_Brightness(uint8_t duty);
+
+int main(void)
+{
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+    SystemCoreClockUpdate();
+    Delay_Init();
+    GPIO_Config();
+
+    while (1)
+    {
+        uint8_t ldr_state = GPIO_ReadInputDataBit(GPIOD, LDR_PIN);
+        uint8_t ir_state = GPIO_ReadInputDataBit(GPIOD, IR_SENSOR_PIN);
+
+        if (ldr_state == 0) // Dark condition
+        {
+            if (ir_state == 1) // IR sensor detects object (Active)
+                Control_LED_Brightness(100); // Full brightness
+            else
+                Control_LED_Brightness(30); // Dim light
+        }
+        else
+        {
+            Control_LED_Brightness(0); // Light detected, LEDs OFF
+        }
+    }
+}
+
+void GPIO_Config(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure = {0};
+
+    // Enable GPIO clocks
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD, ENABLE);
+
+    // Configure LDR and IR sensor as input (PD4, PD5)
+    GPIO_InitStructure.GPIO_Pin = LDR_PIN | IR_SENSOR_PIN;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+    GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+    // Configure LED pins (PC0 - PC4) as output
+    GPIO_InitStructure.GPIO_Pin = LED1_PIN | LED2_PIN | LED3_PIN | LED4_PIN | LED5_PIN;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+}
+
+// Function to simulate PWM brightness control
+void Control_LED_Brightness(uint8_t duty)
+{
+    uint16_t pwm_levels[LED_COUNT];
+
+    // Scale brightness based on duty cycle
+    for (int i = 0; i < LED_COUNT; i++)
+    {
+        pwm_levels[i] = (brightness_levels[i] * duty) / 100;
+    }
+
+    // Simulate PWM by toggling LEDs
+    for (int t = 0; t < 100; t++)
+    {
+        GPIO_WriteBit(GPIOC, LED1_PIN, (t < pwm_levels[0]) ? Bit_SET : Bit_RESET);
+        GPIO_WriteBit(GPIOC, LED2_PIN, (t < pwm_levels[1]) ? Bit_SET : Bit_RESET);
+        GPIO_WriteBit(GPIOC, LED3_PIN, (t < pwm_levels[2]) ? Bit_SET : Bit_RESET);
+        GPIO_WriteBit(GPIOC, LED4_PIN, (t < pwm_levels[3]) ? Bit_SET : Bit_RESET);
+        GPIO_WriteBit(GPIOC, LED5_PIN, (t < pwm_levels[4]) ? Bit_SET : Bit_RESET);
+        Delay_Ms(1);
+    }
+}
