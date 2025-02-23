@@ -368,9 +368,9 @@ An **Intelligent light system** is a setup designed to automatically control the
 |--------------|-------------|-------------|
 | **VCC of IR Sensor** | **5V** | Power supply |
 | **GND of IR/LDR Sensor** | **GND** | Ground connection |
-| **OUT of IR Sensor** | **Pin 4** | Motion detection signal |
-| **OUT of LDR Sensor**| **Pin 5**| Light detection signal|
-| **LED** | **Pins 0-4** | Indicates motion detected |
+| **OUT of IR Sensor** | **Pin PD4** | Motion detection signal |
+| **OUT of LDR Sensor**| **Pin PD5**| Light detection signal|
+| **LED** | **Pins PC0-4** | Indicates motion detected |
 
 ---
 ## Working 
