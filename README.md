@@ -1,5 +1,5 @@
 <details>
-<summary> <b>Task 1:</b> The task involves thoroughly reviewing the lab videos related to C programming and the RISC-V architecture to gain a comprehensive understanding of both topics. Afterward, you are required to compile C code using two different compilers: the GCC compiler and the RISC-V compiler. This exercise will showcase your grasp of the compilation process, where you will observe and compare how each compiler translates the C code into machine code, highlighting the differences and specificities of the compilation process for different architectures.</summary> 
+<summary> <b>Task 1:</b> The task requires an in-depth review of lab videos on C programming and the RISC-V architecture to develop a strong understanding of both subjects. After completing the review, the  C program is compiled using two different compilers: the GCC compiler and the RISC-V compiler. This exercise will demonstrate the understanding of the compilation process by allowing the user to compare how each compiler converts the C code into machine code. Through this comparison, identification of differences in the compilation process and the unique characteristics of each architecture can be done..</summary> 
 <br>
 Task is to refer to C based and RISCV based lab videos and execute the task of compiling the C code using gcc and riscv compiler.
 
@@ -7,13 +7,13 @@ Task is to refer to C based and RISCV based lab videos and execute the task of c
 
 **C and RISC-V Based Labs**
 
-This repository demonstrates the processes involved in compiling C programs and generating assembly code using both a standard GCC compiler and a RISC-V GCC compiler. It includes comprehensive steps and explanations to guide users through each stage of the compilation and debugging workflow.
+This repository showcases the steps involved in compiling C programs and generating assembly code using both a standard GCC compiler and a RISC-V GCC compiler. It provides detailed instructions and explanations to guide users through each phase of the compilation and debugging process.
 
 **C Language-Based Lab**
 
-Steps to Compile a .c File on Your Machine:
+Steps to Compile a .c File on a Local Machine:
 
-1. Open the bash terminal and navigate to the directory where you want to create your file.
+1. Open the Bash terminal and navigate to the desired directory.
 2. Use the following command to create and edit a new .c file:
    ```sh
    leafpad sum1ton.c
@@ -28,12 +28,11 @@ Steps to Compile a .c File on Your Machine:
  
 Compilation and execution complete.
  
-![2](https://github.com/user-attachments/assets/5363e456-21a1-498f-b360-5f5d66a58029)
-)
+![2](Task1/Cprogram.png)
 RISC-V Based Lab
 
 **Steps to Compile Using RISC-V GCC Compiler:**
-1. Ensure the RISC-V GCC compiler is installed and accessible on your system.
+1. Ensure the RISC-V GCC compiler is installed and accessible on the system.
 2. Verify the .c file contents using the cat command:
    ```sh
    cat sum1ton.c
@@ -47,17 +46,16 @@ riscv64-unknown-elf-gcc -o1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
  ```sh
 riscv64-unknown-elf-objdump -d sum1ton.o
 ```
-5.minimize the assembly by using following code:
+5. Minimize the assembly by using following code:
 ```sh
 riscv64-unknown-elf-objdump -d sum1ton.o | less
 ```
- a)we extract main function's assembly code by using:
+   a)Extract the main function's assembly code by using:
    ```sh
 /main
 ```
 6. Use /main in the terminal to locate the main function in the assembly output.
-![4](https://github.com/user-attachments/assets/1f0acd4c-5ffa-43a4-97b6-fe6d89757fdf)
-)
+![4](Task1/Riscwitho1.png)
 
 7.Compile the C program for RISC-V architecture using ofast option:
 ```sh
@@ -71,26 +69,26 @@ riscv64-unknown-elf-objdump -d sum1ton.o
 ```sh
 riscv64-unknown-elf-objdump -d sum1ton.o | less
 ```
- a)we extract main function's assembly code by using:
+ a) Extract the assembly code **main** function using:
  ```sh
   /main
 ```
 10. Use /main in the terminal to locate the main function in the assembly output.
-![4](https://github.com/user-attachments/assets/a8cf86d0-0954-4ad8-a923-ffe519db5115)
-)
+![4](Task1/Riscwithofast.png)
 
 Explanation of Key Commands and Options: 
-1. -mabi=lp64: Specifies the Application Binary Interface (ABI) for 64-bit integers, pointers, and long data types, suitable for 64-bit RISC-V architecture.
+1. -mabi=lp64: Specifies the Application Binary Interface (ABI) for 64-bit integers, pointers, and long data types, tailored for the 64-bit RISC-V architecture.
 
-2. -march=rv64i: Indicates the 64-bit RISC-V base integer instruction set architecture.
+2. -march=rv64i: Defines the 64-bit RISC-V base integer instruction set architecture.
 
-3. -O1: Enables basic optimization for better performance without significantly increasing compilation time.
+3. -O1: Enables basic optimization to improve performance without significantly increasing compilation time.
 
-4. -Ofast: Optimize the code aggressively for the best possible speed.
+4. -Ofast: Applies extensive optimizations for maximum speed improvements.
 
-5. riscv64-unknown-elf-objdump: A tool for disassembling RISC-V binaries to examine the code structure and debug it effectively.
+5. riscv64-unknown-elf-objdump: A disassembly tool for analyzing RISC-V binaries and debugging code efficiently.
  
    </details>
+
 
 ---
 
