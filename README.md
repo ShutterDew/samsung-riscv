@@ -235,23 +235,10 @@ This README contains a table of 15 unique RISC-V instructions, their machine cod
 
 ---
 <details>
-<summary> <b>Task 4:</b>This task involves simulating the RISC-V Core using the provided Verilog netlist and testbench. You will set up a simulation environment using tools like Icarus Verilog and GTKWave, run the simulation to verify the functional correctness of the core, and analyze output signals. Waveform snapshots of the executed instructions must be captured and uploaded to your GitHub repository along with a brief description, demonstrating your understanding of RISC-V functional simulation and verification.</summary> 
+<summary> <b>Task 4: </b>The task requires simulating a RISC-V Core using the given Verilog netlist and testbench. A simulation environment must be set up using tools such as Icarus Verilog and GTKWave. The simulation should be executed to verify the functional correctness of the core, and the output signals must be analyzed. Waveform snapshots of the executed instructions need to be captured and uploaded to a GitHub repository, accompanied by a brief description. This documentation should demonstrate an understanding of RISC-V functional simulation and verification.</summary> 
 <br>
 
-## 2. BLOCK DIAGRAM OF RISC-V RV32I
-![image](https://user-images.githubusercontent.com/110079631/181293948-beb8622c-7696-4b06-b6c9-eeab9b8ab9d3.png)
-
-## 3. INSTRUCTION SET OF RISC-V RV32I
-![image](https://user-images.githubusercontent.com/110079631/181298133-60269bc2-01da-4b5c-8b42-69057b8dc15c.png)
-
-# RISC-V Core Functional Simulation 
-## 4. FUNCTIONAL SIMULATION
-
-### 4.1 About iverilog and gtkwave
-- Icarus Verilog is an implementation of the Verilog hardware description language.
-- GTKWave is a fully featured GTK+ v1. 2 based wave viewer for Unix and Win32 which reads Ver Structural Verilog Compiler generated AET files as well as standard Verilog VCD/EVCD files and allows their viewing.
-
-### 4.2 Installing iverilog and gtkwave
+### Installing iverilog and gtkwave
 
 - **For Ubuntu**
 
@@ -277,274 +264,69 @@ $ ./iiitb_rv32i
 
 `$ gtkwave iiitb_rv32i.vcd`
 
-### 4.3 The output waveform
-
- The output waveform showing the instructions performed in a 5-stage pipelined architecture.
-
-## Instructions and Pipeline Details  
-
-Below are the 15 instructions and their corresponding pipeline details:  
-
----
-
-### 1. `add r6, r2, r1`  
-**Purpose:** Add `r2` and `r1`, store the result in `r6`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `add` instruction.
-  - IF_ID_NPC: Holds the next program counter value.
-Decode Stage:
-  - ID_EX_IR: Ensures the instruction is decoded.
-  - ID_EX_A: Value of register `r2`.
-  - ID_EX_B: Value of register `r1`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r2 + r1`.
-  - EX_MEM_IR: Holds the `add` instruction.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r6`.
-```
-
----
-
-### 2. `sub r7, r1, r2`  
-**Purpose:** Subtract `r2` from `r1`, store the result in `r7`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `sub` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r1`.
-  - ID_EX_B: Value of register `r2`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r1 - r2`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r7`.
-```
-
----
-
-### 3. `and r8, r1, r3`  
-**Purpose:** Perform bitwise AND between `r1` and `r3`, store the result in `r8`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `and` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r1`.
-  - ID_EX_B: Value of register `r3`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r1 & r3`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r8`.
-```
-
----
-
-### 4. `or r9, r2, r5`  
-**Purpose:** Perform bitwise OR between `r2` and `r5`, store the result in `r9`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `or` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r2`.
-  - ID_EX_B: Value of register `r5`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r2 | r5`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r9`.
-```
-
----
-
-### 5. `xor r10, r1, r4`  
-**Purpose:** Perform bitwise XOR between `r1` and `r4`, store the result in `r10`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `xor` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r1`.
-  - ID_EX_B: Value of register `r4`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r1 ^ r4`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r10`.
-```
-
----
-
-### 6. `addi r12, r4, 5`  
-**Purpose:** Add immediate value `5` to `r4`, store the result in `r12`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `addi` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r4`.
-  - ID_EX_IMMEDIATE: Immediate value `5`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r4 + 5`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r12`.
-```
-
----
-
-### 7. `sw r3, r1, 2`  
-**Purpose:** Store the value of `r3` into memory address `r1 + 2`.  
-```markdown
-Memory Access Stage:
-  - EX_MEM_ALUOUT: Computed memory address (`r1 + 2`).
-  - EX_MEM_B: Value of `r3` to store.
-```
-
----
-
-### 8. `lw r13, r1, 2`  
-**Purpose:** Load word from memory address `r1 + 2` into `r13`.  
-```markdown
-Memory Access Stage:
-  - MEM_WB_LMD: Value loaded from memory.
-Write-Back Stage:
-  - WB_OUT: Verifies the value is written to `r13`.
-```
-
----
-
-### 9. `beq r0, r0, 15`  
-**Purpose:** Branch to PC + 15 if `r0 == r0` (always true).  
-```markdown
-Decode Stage:
-  - BR_EN: High (branch taken).
-Fetch Stage:
-  - IF_ID_NPC: Updated program counter.
-```
-
----
-
-### 10. `add r14, r2, r2`  
-**Purpose:** Add `r2` to itself, store the result in `r14`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `add` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r2`.
-  - ID_EX_B: Value of register `r2`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r2 + r2`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r14`.
-```
-
----
-
-### 11. `bne r0, r1, 20`  
-**Purpose:** Branch to PC + 20 if `r0 != r1`.  
-```markdown
-Decode Stage:
-  - BR_EN: High if `r0 != r1`.
-Fetch Stage:
-  - IF_ID_NPC: Updated program counter.
-```
-
----
-
-### 12. `addi r12, r4, 5`  
-**Purpose:** Add immediate value `5` to `r4`, store the result in `r12`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `addi` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r4`.
-  - ID_EX_IMMEDIATE: Immediate value `5`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r4 + 5`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r12`.
-```
-
----
-
-### 13. `sll r15, r1, r2 (2)`  
-**Purpose:** Perform logical left shift of `r1` by 2 (specified in `r2`), store the result in `r15`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `sll` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r1`.
-  - ID_EX_SHAMT: Immediate shift value `2`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r1 << 2`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r15`.
-```
-
----
-
-### 14. `srl r16, r14, r2 (2)`  
-**Purpose:** Perform logical right shift of `r14` by 2 (specified in `r2`), store the result in `r16`.  
-```markdown
-Fetch Stage:
-  - IF_ID_IR: Holds the `srl` instruction.
-Decode Stage:
-  - ID_EX_A: Value of register `r14`.
-  - ID_EX_SHAMT: Immediate shift value `2`.
-Execute Stage:
-  - EX_MEM_ALUOUT: Result of `r14 >> 2`.
-Write-Back Stage:
-  - WB_OUT: Verifies the result is written to `r16`.
-```
-
-
 #### *Analysing the Output Waveform of various instructions*  
-**```Instruction 1: ADD R6, R2, R1```**  
+
+**```Instruction 1: ADD R6, R2, R1```** 
+**Operation:** Adds `r2` and `r1`, and stores it in r6.
   
-![add](https://github.com/user-attachments/assets/44851b1c-806a-4182-81ab-47af3cf725be)
+![add](Task4/And.png)
 
 
 **```Instruction 2: SUB R7, R1, R2```**  
+**Operation:** Subtracts `r2` from `r1`, and stores it in r7.
   
-![sub](https://github.com/user-attachments/assets/1104fc06-491a-4e9c-971c-8b51387bd2d6)
+![sub](Task4/Sub.png)
 
 
 **```Instruction 3: AND R8, R1, R3```**  
+**Operation:** And operation on `r2` and `r1`, and stores it in r8.
 
-![and](https://github.com/user-attachments/assets/ddeb5386-04ac-4ea7-a4ee-1e4d2968d2c9)
+
+![and](Task4/And.png)
 
 
 **```Instruction 4: OR R9, R2, R5```**  
+**Operation:** Or operation on `r2` and `r1`, and stores it in r6.
 
-![or](https://github.com/user-attachments/assets/c10ba03d-4f25-49f6-a1c4-b68dde3c1383)
+![or](Task4/or.png)
 
 
 **```Instruction 5: XOR R10, R1, R4```**  
+**Operation:** Xor operation on `r2` and `r1`, and stores it in r6.
 
-![xor](https://github.com/user-attachments/assets/ed7a6299-92a0-4ed5-b812-97050af83c54)
-
-
-**```Instruction 6: SLT R1, R2, R4```**  
-
-![slt](https://github.com/user-attachments/assets/d463ee88-c39f-41c3-a4b3-31ee670da5e3)
+![xor](Task4/xor.png)
 
 
-**```Instruction 7: ADDI R12, R4, 5```**  
+**```Instruction 6: SLT R1, R2, R4```** 
+**Operation:** Compares two registers `r2` and r4` and sets the destination register `r1` to 1 if the first register is less than the second; otherwise, it sets the destination to 0.
 
-![addi](https://github.com/user-attachments/assets/4581b98f-e445-4776-8700-68b03f26131f)
+![slt](Task4/slt.png)
+
+
+**```Instruction 7: ADDI R12, R4, 5```**
+**Operation:** Performs an addition operation between a register `r4` and an immediate (constant) value (5) and stores in `r12`.
+
+![addi](Task4/addi.png)
 
 
 **```Instruction 8: BEQ R0, R0, 15```**  
-  
-![BEQ](https://github.com/user-attachments/assets/02bbbd72-6d84-4595-a0af-5157524ccdf8)
+**Operation:** The processor unconditionally jumps to the instruction located 15 instructions ahead.
+![BEQ](Task4/beq.png)
 
  
 **```Instruction 9:sw r3,r1,2```**
-
-![sw](https://github.com/user-attachments/assets/65fd8529-9b5e-4572-a796-c370ab6b7051)
+**Operation:** stores the word in `r1` in another register `r3` with an offset of 2.
+![sw](Task4/sw.png)
 
   
 **```Instruction 10:lw r13,r1,2```**  
+**Operation:** Loads word in `r1` in another register `r13` with an offset of 2.
 
-![lw](https://github.com/user-attachments/assets/58c72387-6ca2-4e15-a7c3-ca68f906ee3f)
+![lw](Task4/lw.png)
 
-**``` Full 5-stage instruction pipeline and pc-increment description Waveform```**
+**``` Full Instruction description Waveform```**
 
-![5-stage instruction pipeline and pc-increment description Waveform](https://github.com/user-attachments/assets/2bce01e3-3405-432d-a1d6-ec359d45d560)
+![5-Full Instruction description Waveform](Task4/pipelin4.2.png)
 
 
 
