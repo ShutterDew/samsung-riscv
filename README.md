@@ -372,10 +372,6 @@ An **Smart light system** is a setup designed to automatically control the light
 | **OUT of LDR Sensor**| **Pin 5**| Light detection signal|
 | **LED** | **Pins 0-4** | Indicates motion detected |
 
-## Pin connection diagram
-
-![Smart-light-system circuit diagram] (Task5/Rough Circuit.png)
-
 ---
 ## Working 
 - The **LDR sensor** is placed where it can detect light within its range.
