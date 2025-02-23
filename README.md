@@ -419,7 +419,11 @@ An **Smart light system** is a setup designed to automatically control the light
 - If no motion is detected, LEDs are at 50% brightness.
 - If motion detected brightness is incresed to 100%  
 
-This implementation ensures **automatic lighting control**, **indicate the proper process**, and **security enhancements** for various applications.
+This implementation ensures **automatic lighting control**, **indicate the proper process**, and **security enhancements**.
+
+[Watch the Demo Video](Task6/Intelight.mp4)
+
+
 ---
 
 ## Code Implementation  
