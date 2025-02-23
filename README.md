@@ -395,31 +395,30 @@ An **Intelligent light system** is a setup designed to automatically control the
 ### Steps to Implement:  
 1. **Hardware Setup:**  
    - Connect the **LDR and IR sensor** to the board's GPIO pins.  
-   - Wire an **LEDs** to indicate motion detection.  
+   - Wire **LEDs** to indicate motion detection.  
    - Use a **breadboard** for easy prototyping and secure connections.  
 
 2. **Software Development:**  
-   - Write the **C firmware** to read the IR sensor output.  
+   - Write the **C firmware** to read the IR & LDR sensor output.  
    - Configure the GPIO pins for input (LDR and IR sensor) and output (LEDs).  
-   - Implement logic to **Switch LEDs on/off and increse/decrease brightness** upon detecting motion.  
+   - Implement logic to **Switch LEDs on/off and increse/decrease brightness** upon detecting light/motion.  
    - Keep the LED **OFF** as long as light is detected.  
    - Turn the LED brightness **100%** when movement is present.  
 
 3. **Compilation & Upload:**  
-   - Compile the code using a **RISC-V compatible toolchain**.  
-   - Flash the program onto the **VSDSquadron Mini Board**.  
+   - Compile the code using a **PlatformIO**.  
+   - Upload the program onto the **VSDSquadron Mini Board**.  
 
 4. **Testing & Debugging:**  
-   - Test the system in different lighting conditions.  
-   - Adjust sensor sensitivity if needed.   
+   - Test the system in different lighting conditions.
+   - Test the system with and without the presence of motion. 
+   - Adjust sensor sensitivities if needed.   
 
 ### Expected Output:  
-- If light is detected for a certain period, the LED automatically **turns OFF**. 
-- If no light is detected for, the LED automatically **turns ON**.
+- If light is detected, the LED automatically **turn OFF**. 
+- If no light is detected for, the LED automatically **turn ON**.
 - If no motion is detected, LEDs are at 50% brightness.
-- If motion detected brightness is incresed to 100%  
-
-This implementation ensures **automatic lighting control**, **indicate the proper process**, and **security enhancements**.
+- If motion detected brightness is incresed to 100%.
 
 [Watch the Demo Video](Task6/Intelight.mp4)
 
