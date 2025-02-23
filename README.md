@@ -93,20 +93,20 @@ Explanation of Key Commands and Options:
 ---
 
 <details>
-<summary> <b>Task 2:</b> The task involves reviewing both C-based and RISC-V-based lab videos to understand the nuances of compiling C code for different architectures. Afterward, you are required to execute the process of compiling the C code using two distinct tools: the GCC compiler and the RISC-V compiler simulator. This will allow you to demonstrate your ability to work with both compilers, providing insights into how the C code is processed and converted into machine-readable code for each specific architecture.</summary> 
+<summary> <b>Task 2:</b> This task requires an analysis of lab videos on both C programming and the RISC-V architecture to develop a thorough understanding of compiling C code for different architectures. After completing the review, the process of compiling C code must be carried out using two distinct tools: the GCC compiler and the RISC-V compiler simulator. This will demonstrate the ability to work with both compilers while providing insights into how each translates C code into machine-readable instructions specific to its respective architecture.</summary> 
 <br>
 
 Task is to analyze the SPIKE simulation performance using RISC-V GCC with -O1 and -Ofast optimization levels.  
 
 *SPIKE Simulation and Compiler Optimization*
 
-This repository demonstrates how to compile a C program using RISC-V GCC, simulate it using SPIKE, and compare the performance of different optimization levels (-O1 and -Ofast). It includes detailed steps and explanations to ensure clarity.  
+This repository showcases the process of compiling a C program with RISC-V GCC, running it in the SPIKE simulator, and analyzing performance differences between optimization levels (`-O1` and `-Ofast`). It provides detailed instructions and explanations to enhance understanding. 
 
 **Steps to Complete the Task**  
 
 1.Write a Simple C Program  
 
-2.The following program calculates the swaping of two numbers:  
+2.The following program calculates the sum of numbers from 1 to 100:  
 
 3.Compile Using RISC-V GCC
 
@@ -114,59 +114,59 @@ This repository demonstrates how to compile a C program using RISC-V GCC, simula
 
 *Use the following command to compile the program with the -O1 optimization flag:*
 ```sh
-riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o swift.o swift.c
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
 ```
 **Disassemble Object Files to View Assembly Code(in new terminal)**
 *Generate Dump for -O1 Optimization*
 ```sh
-riscv64-unknown-elf-objdump -d swift.o
+riscv64-unknown-elf-objdump -d sum1ton.o
 ```
 *Minimize the assembly by using following code:*
 ```sh
-riscv64-unknown-elf-objdump -d swift.o | less
+riscv64-unknown-elf-objdump -d sum1ton.o | less
 ```
-![main program for O1 option](https://github.com/user-attachments/assets/63c34a23-919a-4741-91f9-ab9e48a13e4a)
+![main program for O1 option](Task2/objdump_o1.png)
 
 
 **Run SPIKE Simulation**
 *Run a compiled RISC-V program on the SPIKE simulator in non-debug mode.*
 ```sh
-spike pk swift.o
+spike pk sum1ton.o
 ```
 *Invoke the debug mode of the SPIKE RISC-V simulator.*
 ```sh
-spike -d pk swift.o
+spike -d pk sum1ton.o
 ```
-![compiling with O1 option](https://github.com/user-attachments/assets/257327e6-bb35-412f-92de-ce70c92736d0)
+![compiling with O1 option](Task2/o1_debug.png)
 
 
 **Compile with -Ofast Optimization.**
 *Use the following command to compile the program with the -Ofast optimization flag:*
 ```sh
-riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o swift.o swift.c
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
 ```
 **Disassemble Object Files to View Assembly Code(in new terminal)**
 *Generate Dump for -Ofast Optimization*
 ```sh
-riscv64-unknown-elf-objdump -d swift.o
+riscv64-unknown-elf-objdump -d sum1ton.o
 ```
 *Minimize the assembly by using following code:*
 ```sh
-riscv64-unknown-elf-objdump -d swift.o | less
+riscv64-unknown-elf-objdump -d sum1ton.o | less
 ```
-![main program for ofast option](https://github.com/user-attachments/assets/f5df539d-7170-4158-bf1b-b19240672da2)
+![main program for ofast option](Task2/objdump_ofast.png)
 
 
 **Run SPIKE Simulation**
 *Run -O1 Binary in SPIKE*
 ```sh
-spike pk swift.o
+spike pk sum1ton.o
 ```
 *Invoke the debug mode of the SPIKE RISC-V simulator*
 ```sh
-spike -d pk swift.o
+spike -d pk sum1ton.o
 ```
-![compiling with Ofast option](https://github.com/user-attachments/assets/c67c0820-11ea-4aae-aa01-1edaae5b8e71)
+![compiling with Ofast option](Task2/ofast_debug.png)
 
 
 **After(spike -d pk swift.o) Observe the Instructions:**
@@ -184,15 +184,15 @@ spike -d pk swift.o
 
 2. pk:Proxy kernel that acts as a minimal runtime environment for RISC-V programs, handling system calls like I/O and memory management.
 
-3. swift.o:The compiled RISC-V binary of your program (created using a RISC-V GCC compiler).
+3. sum1ton.o:The compiled RISC-V binary of your program (created using a RISC-V GCC compiler).
 
 4. -d (for debugging):Debugging mode in SPIKE, allows stepping through the instructions and inspecting the program's behavior.
 
 5. riscv64-unknown-elf-gcc:RISC-V GCC compiler used to compile the C program into a RISC-V object file (.o).
 
-6. -O1, -Ofast:Compiler optimization flags:
+6. -O1, -Ofast: Compiler optimization flags:
       a.-O1: Basic optimizations for performance.
-      b.-Ofast: Aggressive optimizations for maximum speed.
+      b.-Ofast: Extensive optimizations for maximum speed.
 
 7. riscv64-unknown-elf-objdump:Disassembles RISC-V binaries to examine assembly code.
 
