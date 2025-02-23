@@ -335,7 +335,7 @@ $ ./iiitb_rv32i
 ---
 
 <details>
-<summary> <b>Task 5:</b>This smart light system is an intelligent setup designed to control lighting based on the presence or absence of daylight and motion within its detection range. The system utilizes a LDR sensor and an IR sensor to continuously monitor its surroundings for any daylight or movement. When daylight is detected, the system automatically turns OFF the LED. If no daylight is detected, the LED turns ON at 50% brightness. Then the IR sensor comes into use, it detects motion and signals the system to operate the LEDs at full power. This system is widely used in smart street lights for energy conservation and smart city applications.</summary> 
+<summary> <b>Task 5:</b>This intelligent lighting system is designed to regulate illumination based on ambient daylight and motion detection. It incorporates an LDR sensor to assess the presence of daylight and an IR sensor to detect movement within its range. When daylight is present, the system automatically switches off the LED. In the absence of daylight, the LED operates at 50% brightness. Upon detecting motion, the IR sensor activates the LED at full brightness. This system is commonly implemented in smart street lighting to enhance energy efficiency and support smart city initiatives.</summary> 
 <br>
 
 # Automatic Light System using VSDSquadron Mini RISC-V Board
@@ -343,9 +343,9 @@ $ ./iiitb_rv32i
 ## Project Overview
 An **Smart light system** is a setup designed to automatically control the lighting based on the presence or absence of daylight or motion within its detection range.
 ### Features:
-✅ **Smart Light Control**: Switches light ON oe OFF based on daylight conditions  
-✅ **Motion Detected**: LED brightness increases to 100% from it's default 50%   
-✅ **Energy Conservation**: Saves energy on street lights    
+1. **Smart Light Control**: Switches light ON or OFF based on daylight conditions  
+2. **Motion Detected**: LED brightness increases to 100% from it's default 50%   
+3. **Energy Conservation**: Saves energy on street lights    
 
 ---
 
@@ -366,22 +366,25 @@ An **Smart light system** is a setup designed to automatically control the light
 
 | **Component** | **Board Pin** | **Purpose** |
 |--------------|-------------|-------------|
-| **VCC of IR Sensor** | **3.2V** | Power supply |
+| **VCC of IR Sensor** | **5V** | Power supply |
 | **GND of IR/LDR Sensor** | **GND** | Ground connection |
 | **OUT of IR Sensor** | **Pin 4** | Motion detection signal |
 | **OUT of LDR Sensor**| **Pin 5**| Light detection signal|
 | **LED** | **Pins 0-4** | Indicates motion detected |
 
+## Pin connection diagram
+
+![Smart-light-system circuit diagram] (Task5/Rough Circuit.png)
 
 ---
 ## Working 
-- The **LDR sensor** id placed in a location where it can detect light within its range.
-- The **IR sensor** is placed in a location where it can detect motion within its range.
+- The **LDR sensor** is placed where it can detect light within its range.
+- The **IR sensor** is placed where it can detect motion within its range.
 - It continuously monitors light for any changes caused by environmental changes.
 - When the LDR gives a false signal, LEDs light up at 50%.
 - When an individual enters the detection range, the IR sensor sends a signal to the microcontroller.
-- Upon detecting motion, the system turns the LED brightness to 100% by usinf PWM signals.
----
+- Upon detecting motion, the system turns the LED brightness to 100% by using PWM signals.
+  
 </details>
 
 ---
