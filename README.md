@@ -338,10 +338,10 @@ $ ./iiitb_rv32i
 <summary> <b>Task 5:</b>This intelligent lighting system is designed to regulate illumination based on ambient daylight and motion detection. It incorporates an LDR sensor to assess the presence of daylight and an IR sensor to detect movement within its range. When daylight is present, the system automatically switches off the LED. In the absence of daylight, the LED operates at 50% brightness. Upon detecting motion, the IR sensor activates the LED at full brightness. This system is commonly implemented in smart street lighting to enhance energy efficiency and support smart city initiatives.</summary> 
 <br>
 
-# Automatic Light System using VSDSquadron Mini RISC-V Board
+# Intelligent Light System using VSDSquadron Mini RISC-V Board
 
 ## Project Overview
-An **Smart light system** is a setup designed to automatically control the lighting based on the presence or absence of daylight or motion within its detection range.
+An **Intelligent light system** is a setup designed to automatically control the lighting based on the presence or absence of daylight or motion within its detection range.
 ### Features:
 1. **Smart Light Control**: Switches light ON or OFF based on daylight conditions  
 2. **Motion Detected**: LED brightness increases to 100% from it's default 50%   
@@ -387,7 +387,7 @@ An **Smart light system** is a setup designed to automatically control the light
 
 
 <details>
-<summary> <b>Task 6:</b>The Smart Street Light System uses the VSDSquadron Mini RISC-V Board, a LDR sensor, an IR sensor, and LEDs for daylight and motion-based lighting control. The LDR detects light and IR sensor detects movement, respectively switching the LED ON/OFF and regulating the brightness. If no motion is detected, the LEDs stay at 50% brightness. This system is ideal for smart street light, sustainable energy usage, smart city developement.</summary> 
+<summary> <b>Task 6:</b>The Intelligent Street Light System uses the VSDSquadron Mini RISC-V Board, a LDR sensor, an IR sensor, and LEDs for daylight and motion-based lighting control. The LDR detects light and IR sensor detects movement, respectively switching the LED ON/OFF and regulating the brightness. If no motion is detected, the LEDs stay at 50% brightness. This system is ideal for smart street light, sustainable energy usage, smart city developement.</summary> 
 <br>
 
 ## Project Implementation  
